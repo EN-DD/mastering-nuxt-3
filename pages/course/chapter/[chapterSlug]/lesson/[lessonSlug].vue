@@ -38,6 +38,7 @@ definePageMeta({
   middleware: [
     function ({ params }, from) {
       const course = useCourse();
+
       const chapter = course.chapters.find(
         (chapter) => chapter.slug === params.chapterSlug
       );
@@ -50,9 +51,11 @@ definePageMeta({
           })
         );
       }
+
       const lesson = chapter.lessons.find(
         (lesson) => lesson.slug === params.lessonSlug
       );
+
       if (!lesson) {
         return abortNavigation(
           createError({
